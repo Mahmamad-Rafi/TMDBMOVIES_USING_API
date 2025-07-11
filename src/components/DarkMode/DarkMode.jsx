@@ -4,6 +4,7 @@ import "./DarkMode.css";
 import { ReactComponent as Sun } from "../../assets/Sun.svg";
 import { ReactComponent as Moon } from "../../assets/Moon.svg";
 
+
 const DarkMode = () => {
     const setDarkTheme = () => {
         document.querySelector("body").setAttribute("data-theme", "dark");

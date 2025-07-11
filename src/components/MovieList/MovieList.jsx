@@ -26,13 +26,25 @@ const MovieList = ({ type, title, emoji }) => {
   }, [sort]);
 
   const fetchMovies = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${type}?api_key=183928bab7fc630ed0449e4f66ec21bd`
-    );
-    const data = await response.json();
-    setMovies(data.results);
-    setFilterMovies(data.results);
-  };
+  try {
+    const totalPagesToFetch = 2; // 2 pages x 20 movies = 40
+    const allResults = [];
+
+    for (let page = 1; page <= totalPagesToFetch; page++) {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${type}?api_key=7e5b44a4c22d61c48693b6b44a0e0a03&page=${page}`
+      );
+      const data = await response.json();
+      allResults.push(...data.results);
+    }
+
+    setMovies(allResults);
+    setFilterMovies(allResults);
+  } catch (error) {
+    console.error("Failed to fetch movies:", error);
+  }
+};
+
 
   const handleFilter = (rate) => {
     if (rate === minRating) {
@@ -63,7 +75,7 @@ const MovieList = ({ type, title, emoji }) => {
           <FilterGroup
             minRating={minRating}
             onRatingClick={handleFilter}
-            ratings={[8, 7, 6]}
+            ratings={[8, 7, 6,5]}
           />
 
           <select

@@ -5,11 +5,12 @@ import DarkMode from "../DarkMode/DarkMode";
 import Fire from "../../assets/fire.png";
 import Star from "../../assets/glowing-star.png";
 import Party from "../../assets/partying-face.png";
+import happy from "../../assets/happy.png"; // 👈 add an icon for now playing
 
 const Navbar = () => {
     return (
         <nav className='navbar'>
-            <h1>MovieManiac</h1>
+            <h1>TBDMOVIES</h1>
 
             <div className='navbar_links'>
                 <DarkMode />
@@ -20,6 +21,10 @@ const Navbar = () => {
                 <a href='#top_rated'>
                     Top Rated{" "}
                     <img src={Star} alt='star emoji' className='navbar_emoji' />
+                </a>
+                <a href='#now_playing'>
+                    Now Playing {" "}
+                    <img src={happy} alt='happy emoji' className='navbar_emoji' />
                 </a>
                 <a href='#upcoming'>
                     Upcoming{" "}
